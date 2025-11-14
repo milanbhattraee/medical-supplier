@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaStethoscope } from "react-icons/fa";
 import { SimpleGrid } from '@mantine/core';
 import Image from 'next/image';

@@ -1,20 +1,17 @@
 "use client";
-import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const headerItem = [
-
-
-  {title: "Home", href: "#home"},
-  {title: "About", href: "#about"},
-  {title: "Products", href: "#product"},
-  {title: "Services", href: "#service"},
-  {title: "Clients", href: "#client"},
-  {title: "Contact", href: "#contact"},
-
+  { title: "Home", href: "#home" },
+  { title: "About", href: "#about" },
+  { title: "Products", href: "#product" },
+  { title: "Services", href: "#service" },
+  { title: "Clients", href: "#client" },
+  { title: "Contact", href: "#contact" },
 ];
 
 const Header = () => {
@@ -24,28 +21,36 @@ const Header = () => {
   };
 
   return (
-    <nav className={`w-full sticky top-0 bg-white z-50 ${isOpen && "h-screen" } md:h-10 md:px-20 px-5 lg:px-10 py-5 md:py-10 flex md:flex-row flex-col md:justify-around justify-start md:items-center items-start  layout text-black shadow-md border-b border-gray-300`}>
-      <div>
-        <h1 className="font-bold text-xl">Nepal MedSupply Hub</h1>
+    <nav
+      className={`w-full sticky top-0 bg-white z-50 ${
+        isOpen && "h-screen"
+      } md:h-10 md:px-20 px-5 lg:px-10  md:py-10 flex md:flex-row flex-col md:justify-around justify-start md:items-center items-start  layout text-black shadow-md border-b border-gray-300`}
+    >
+      <div className="flex gap-x-3 justify-center items-center">
+        <Image
+          className="drop-shadow-xl w-full h-20 "
+          src="/danfeLogo.png"
+          width={500}
+          height={500}
+          alt="logo"
+        />
+        {/* <h1 className="font-bold text-xl">Nepal MedSupply Hub</h1> */}
       </div>
-      <div className="">
+      <div >
         <ul className=" hidden md:flex space-x-4 lg:space-x-6">
           {headerItem.map((item, index) => (
             <li
               key={index}
               className="cursor-pointer text-md text-gray-700 hover:text-black"
             >
-            <Link href={item.href}>
-              {item.title}
-              </Link>
+              <Link href={item.href}>{item.title}</Link>
             </li>
           ))}
         </ul>
-
       </div>
-        {/* for mobile */}
+      {/* for mobile */}
 
-      <div className="md:w-auto w-full ">
+      <div className="md:w-auto sm:px-5 md:px-0 w-full ">
         {isOpen && (
           <ul className="w-full mt-6  flex md:hidden flex-col space-y-4 ">
             {headerItem.map((item, index) => (
@@ -53,9 +58,7 @@ const Header = () => {
                 key={index}
                 className="cursor-pointer text-md text-gray-700 hover:text-black"
               >
-                <Link href={item.href}>
-              {item.title}
-              </Link>
+                <Link href={item.href}>{item.title}</Link>
               </li>
             ))}
           </ul>
@@ -63,31 +66,23 @@ const Header = () => {
         <button
           className={`md:w-32 ${!isOpen && "hidden"}
     md:block ${
-   isOpen ? " mt-6 w-full" : ""
- } h-10 primary rounded-xl text-white`}
+      isOpen ? " mt-6 w-full" : ""
+    } h-10 primary rounded-xl text-white`}
         >
           get a quote
         </button>
 
-        {/* {isOpen ? (
-          <button className="md:w-32 w-full mt-6 h-10 primary rounded-xl text-white">
-            get a quote
-          </button>
-        ) : (
-          <button className="hidden md:block md:w-32 w-full h-10 primary rounded-xl text-white">
-            get a quote
-          </button>
-        )} */}
+       
 
         {isOpen ? (
           <GrClose
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden  text-2xl absolute right-2 top-6 cursor-pointer hover:rotate-90"
+            className="md:hidden absolute top-10 right-12  text-2xl  cursor-pointer hover:rotate-90"
           />
         ) : (
           <GiHamburgerMenu
             onClick={toggleMenu}
-            className="md:hidden absolute right-2 top-6 text-2xl cursor-pointer"
+            className="md:hidden absolute top-10 right-12 text-2xl cursor-pointer"
           />
         )}
       </div>

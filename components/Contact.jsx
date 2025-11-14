@@ -2,7 +2,12 @@
 import { FaStethoscope } from "react-icons/fa";
 import { Button, Input, InputLabel, SimpleGrid, Textarea } from "@mantine/core";
 import { CiStopwatch } from "react-icons/ci";
+import { RiTwitterXLine } from "react-icons/ri";
+import { FaFacebook } from "react-icons/fa";
+
+
 import { useState } from "react";
+import Link from "next/link";
 
 const Contacts = [
   {
@@ -25,6 +30,22 @@ const Contacts = [
   },
 ];
 
+const SocialMediaLinks = [
+  {
+    title : "X",
+    logo : <RiTwitterXLine/>,
+    link : "https://www.x.com"
+  },{
+    title : "Facebook",
+    logo : <FaFacebook/>,
+    link : "https://www.facebook.com"
+  },{
+    title : "X",
+    logo : <RiTwitterXLine/>,
+    link : "x.com"
+  },
+]
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -41,13 +62,33 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          senderEmail: formData.email,
+          senderPhone: formData.phone,
+          senderName: formData.name,
+          message: formData.message,
+        }),
+      });
+
+      console.log("Response : ", response);
+    } catch (error) {
+      console.error("Error while sending email : ", error);
+    }
   };
 
   return (
-    <section id="contact" className="flex w-full layout-bg flex-col justify-center md:px-20 md:py-20 px-6 py-10 items-center space-y-10">
+    <section
+      id="contact"
+      className="flex w-full layout-bg flex-col justify-center md:px-20 md:py-20 px-6 py-10 items-center space-y-10"
+    >
       <div className="w-full text-center">
         <h2 className="text-2xl font-bold">Get In Touch</h2>
         <p className="text-secondary py-6">
@@ -137,8 +178,9 @@ const Contact = () => {
             type="submit"
             style={{
               "background-color": "#005085",
+              "width" : "100%"
             }}
-            className="w-full"
+            className="w-full "
           >
             Submit
           </Button>
@@ -159,15 +201,18 @@ const Contact = () => {
           <div className="flex w-full bg-white p-6 rounded-xl border border-slate-200 mb-3  justify-start gap-x-10 items-start flex-col h-40 hover:shadow-lg  space-y-3 transition-all duration-400">
             <h2 className="sub-heading">Follow Us</h2>
             <div className="flex gap-x-7">
-              <div className="w-10 h-10  rounded-lg bg-slate-200 flex justify-center  items-center grow-0">
-                <h3>LI</h3>
-              </div>
-              <div className="w-10 h-10  rounded-lg bg-slate-200 flex justify-center  items-center grow-0">
-                <h3>LI</h3>
-              </div>
-              <div className="w-10 h-10  rounded-lg bg-slate-200 flex justify-center  items-center grow-0">
-                <h3>LI</h3>
-              </div>
+              
+                {SocialMediaLinks.map((item,index) =>{
+                  return(
+                    <div key={index} className="w-10 h-10  rounded-lg bg-slate-200 flex justify-center  items-center grow-0">
+                    <Link href={item.link} >
+                      {item.logo}
+                    </Link>
+                    </div>
+                  )
+                } )}
+              
+             
             </div>
           </div>
         </SimpleGrid>

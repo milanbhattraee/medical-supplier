@@ -48,7 +48,7 @@ const Hero = () => {
         <div className="flex  text-center gap-3">
           {HeroItems.map((item, index) => {
             return (
-              <div key={index} className="flex flex-col gap-y-1">
+              <div key={index} className="flex flex-col gap-y-1 gap-x-12">
                 <p className="text-3xl font-bold text-green-500">
                   {item.number}
                 </p>

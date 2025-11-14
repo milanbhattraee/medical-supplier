@@ -50,9 +50,9 @@ const About = () => {
         <div className="flex flex-col pt-8">
           {AboutItems.map((item , index) => {
             return (
-              <div key={index} className="flex gap-1 py-2">
+              <div key={index} className="flex gap-2 py-2">
                 <div
-                  className={`rounded-full ${item.bgColor} flex shrink-0 justify-center items-center w-10 h-10`}
+                  className={`rounded-full ${item.bgColor} flex shrink-0 justify-center items-center w-9 h-9`}
                 >
                   <TiTick size={15} color={item.fgColor} />
                 </div>
