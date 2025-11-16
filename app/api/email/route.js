@@ -4,23 +4,28 @@ const brevoEmail = process.env.BREVO_EMAIL;
 const receiverEmail = process.env.RECIEVER_EMAIL;
 const receiverName = process.env.RECIEVER_NAME;
 
-
 export async function POST(req) {
   const { senderEmail, senderPhone, senderName, message } = await req.json();
 
   try {
     if (!senderEmail || !senderPhone || !senderName || !message) {
-      return Response.json({
-        status: 400,
-        message: "All fields are required!",
-      });
+      return Response.json(
+        {
+          message: "All fields are required!",
+        },
+        {
+          status: 400,
+        },
+      );
     }
 
     if (!apiKey || !sender || !brevoEmail) {
-      return Response.json({
-        status: 400,
-        message: "Credentials are missing!",
-      });
+      return Response.json(
+        { message: "Credentials are missing!" },
+        {
+          status: 400,
+        },
+      );
     }
 
     const response = await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -35,9 +40,7 @@ export async function POST(req) {
           name: sender,
           email: brevoEmail,
         },
-        to: [
-          { email: receiverEmail, name: receiverName },
-        ],
+        to: [{ email: receiverEmail, name: receiverName }],
         subject: `${senderEmail}`,
         htmlContent: `
          <div style="font-family:sans-serif;padding:14px;border-radius:10px;background:#eef4ff;border:1px solid #c7d7ff">
@@ -49,23 +52,27 @@ export async function POST(req) {
 </div>`,
       }),
     });
-
     if (!response.ok) {
-      return Response.json({
-        status: 400,
-        message: "Error while sending Email :",
-      });
+      return Response.json(
+        { message: "Error while sending Email :" },
+        {
+          status: 400,
+        },
+      );
     }
 
-    return Response.json({
-      message: "Email sent successfully",
-      status: 200,
-    });
+    return Response.json(
+      { message: "Email sent successfully" },
+      {
+        status: 200,
+      },
+    );
   } catch (error) {
-    return Response.json({
-      message: "Failed to send email",
-      status: 500,
-      error: error.message,
-    });
+    return Response.json(
+      { error: error.message , message:"Error while sending Email :"},
+      {
+        status: 500,
+      },
+    );
   }
 }

@@ -30,11 +30,10 @@ const Header = () => {
         <Image
           className="drop-shadow-xl w-full h-20 "
           src="/danfeLogo.png"
-          width={500}
-          height={500}
+          width={200}
+          height={200}
           alt="logo"
         />
-        {/* <h1 className="font-bold text-xl">Nepal MedSupply Hub</h1> */}
       </div>
       <div >
         <ul className=" hidden font-semibold md:flex space-x-4 lg:space-x-6">

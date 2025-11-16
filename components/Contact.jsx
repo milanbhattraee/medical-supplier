@@ -4,7 +4,7 @@ import { CiStopwatch } from "react-icons/ci";
 import { RiTwitterXLine } from "react-icons/ri";
 import { FaFacebook } from "react-icons/fa";
 
-import { useState } from "react";
+import {  useState } from "react";
 import Link from "next/link";
 import { Bounce, toast } from "react-toastify";
 import { PiPhoneBold } from "react-icons/pi";
@@ -70,6 +70,8 @@ const FormDefault = {
 const Contact = () => {
   const [formData, setFormData] = useState(FormDefault);
 
+
+
   const onChange = (e) => {
     setFormData({
       ...formData,
@@ -92,9 +94,10 @@ const Contact = () => {
           message: formData.message,
         }),
       });
-
+      
+      const data = await response.json();
       if (response.ok) {
-        toast.success("Email Sent Successfully!", {
+        toast.success(data.message, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -105,8 +108,9 @@ const Contact = () => {
           theme: "light",
           transition: Bounce,
         });
+        setFormData(FormDefault);
       } else {
-        toast.error("Error while sending email :(", {
+        toast.error(data.message, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -117,8 +121,9 @@ const Contact = () => {
           theme: "light",
           transition: Bounce,
         });
+        setFormData(FormDefault);
       }
-      setFormData(FormDefault);
+      
     } catch (error) {
       console.error("Error while sending email : ", error);
     }
@@ -182,6 +187,7 @@ const Contact = () => {
               placeholder="Your Name"
               className="border border-gray-300 rounded-md   w-full "
               onChange={onChange}
+              value={formData.name}
               required
             />
           </div>
@@ -192,6 +198,7 @@ const Contact = () => {
               name="email"
               placeholder="Your Email"
               onChange={onChange}
+              value={formData.email}
               className="border border-gray-300 rounded-md   w-full "
             />
           </div>
@@ -202,6 +209,7 @@ const Contact = () => {
               name="phone"
               placeholder="Your Phone"
               onChange={onChange}
+              value={formData.phone}
               className="border border-gray-300 rounded-md   w-full "
             />
           </div>
@@ -211,6 +219,7 @@ const Contact = () => {
               name="message"
               placeholder="Your Message"
               onChange={onChange}
+              value={formData.message}
               className="border border-gray-300 rounded-md   w-full "
               required
             ></Textarea>
