@@ -37,28 +37,28 @@ const Header = () => {
         {/* <h1 className="font-bold text-xl">Nepal MedSupply Hub</h1> */}
       </div>
       <div >
-        <ul className=" hidden md:flex space-x-4 lg:space-x-6">
+        <ul className=" hidden font-semibold md:flex space-x-4 lg:space-x-6">
           {headerItem.map((item, index) => (
             <li
               key={index}
-              className="cursor-pointer text-md text-gray-700 hover:text-black"
+              className="cursor-pointer text-md text-gray-700"
             >
-              <Link href={item.href}>{item.title}</Link>
+              <Link className="w-full hover:text-sky-800" href={item.href}>{item.title}</Link>
             </li>
           ))}
         </ul>
       </div>
       {/* for mobile */}
 
-      <div className="md:w-auto sm:px-5 md:px-0 w-full ">
+      <div className="md:w-auto sm:px-5  md:px-0 w-full ">
         {isOpen && (
-          <ul className="w-full mt-6  flex md:hidden flex-col space-y-4 ">
+          <ul className="w-full mt-6 items-center font-semibold  flex md:hidden flex-col space-y-4 ">
             {headerItem.map((item, index) => (
               <li
                 key={index}
-                className="cursor-pointer text-md text-gray-700 hover:text-black"
+                className="cursor-pointer w-full text-center text-md text-gray-700 hover:text-black"
               >
-                <Link href={item.href}>{item.title}</Link>
+                <Link className="w-full block hover:text-sky-800" onClick={() =>{setIsOpen(false)}} href={item.href}>{item.title}</Link>
               </li>
             ))}
           </ul>
@@ -69,7 +69,7 @@ const Header = () => {
       isOpen ? " mt-6 w-full" : ""
     } h-10 primary rounded-xl text-white`}
         >
-          get a quote
+          Get A Quote
         </button>
 
        

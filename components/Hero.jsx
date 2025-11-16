@@ -27,6 +27,7 @@ const Hero = () => {
 
         <div className="flex flex-col sm:flex-row sm:gap-4 w-full space-y-3">
           <Button
+            href = "#product"
             style={{
               "background-color": "#005085",
             }}
@@ -63,8 +64,8 @@ const Hero = () => {
         <Image
           className="drop-shadow-xl rounded-md"
           src="/medical.jpg"
-          width={700}
-          height={700}
+          width={500}
+          height={500}
           alt="hero image"
         />
       </div>

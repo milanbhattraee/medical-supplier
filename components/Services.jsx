@@ -43,7 +43,7 @@ const Product = () => {
               className="flex justify-around flex-col h-60 hover:shadow-md hover:border-sky-500 p-5 space-y-3 transition-all duration-400" 
               key={index}
             >
-              <div className='layout-bg text-green-700 w-10 h-10 flex justify-center rounded-md items-center'>{item.logo}</div>
+              <div className={`layout-bg ${index % 2 ==0 ? "text-blue-700": "text-green-700"} w-10 h-10 flex justify-center rounded-md items-center`}>{item.logo}</div>
               <div>
                 <h3 className="sub-heading">{item.title}</h3>
               </div>

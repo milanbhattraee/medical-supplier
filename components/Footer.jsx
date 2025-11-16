@@ -1,5 +1,13 @@
+import Link from 'next/link';
 import React from 'react'
-
+const headerItem = [
+  { title: "Home", href: "#home" },
+  { title: "About", href: "#about" },
+  { title: "Products", href: "#product" },
+  { title: "Services", href: "#service" },
+  { title: "Clients", href: "#client" },
+  { title: "Contact", href: "#contact" },
+];
 const Footer = () => {
   return (
     <section className="w-full flex flex-col  p-20  items-center bg-neutral-950 text-white">
@@ -11,11 +19,14 @@ const Footer = () => {
         <div className='flex flex-col'>
           <h3 className='py-1'>Quick Links</h3>
           <ul className='flex flex-col text-secondary'>
-            <li>About Us</li>
-            <li>Products</li>
-            <li>Services</li>
-            <li>Clients</li>
-            <li>Contact</li>
+            {headerItem.map((item, index) => (
+            <li
+              key={index}
+              className="cursor-pointer text-md text-gray-700"
+            >
+              <Link className="w-full hover:text-sky-800" href={item.href}>{item.title}</Link>
+            </li>
+          ))}
           </ul>
         </div>
         <div className='flex flex-col'>

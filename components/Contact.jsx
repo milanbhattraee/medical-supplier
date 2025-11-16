@@ -1,61 +1,76 @@
 "use client";
-import { FaStethoscope } from "react-icons/fa";
 import { Button, Input, InputLabel, SimpleGrid, Textarea } from "@mantine/core";
 import { CiStopwatch } from "react-icons/ci";
 import { RiTwitterXLine } from "react-icons/ri";
 import { FaFacebook } from "react-icons/fa";
 
-
 import { useState } from "react";
 import Link from "next/link";
+import { Bounce, toast } from "react-toastify";
+import { PiPhoneBold } from "react-icons/pi";
+import { MdEmail } from "react-icons/md";
+import { FaAddressCard } from "react-icons/fa6";
+import { BsYoutube } from "react-icons/bs";
 
 const Contacts = [
   {
-    title: "Surgical Instruments",
-    description:
-      "High-quality surgical instruments including scalpels, forceps, scissors, and clamps for various medical procedures.",
-    logo: <FaStethoscope />,
+    title: "Address",
+    description_1:
+      "Kathmandu , Nepal",
+    description_2:
+      "Medical Supply District",
+    logo: <FaAddressCard />,
   },
   {
-    title: "Diagnostic Equipment",
-    description:
-      "Advanced diagnostic tools such as stethoscopes, blood pressure monitors, and otoscopes to aid in accurate patient assessments.",
-    logo: <FaStethoscope />,
+    title: "Phone",
+     description_1:
+      "97000000000",
+    description_2:
+      "Medical Supply District",
+    logo: <PiPhoneBold />,
   },
   {
-    title: "Medical Consumables",
-    description:
-      "A wide range of disposable medical supplies including gloves, syringes, bandages, and masks to ensure hygiene and safety.",
-    logo: <FaStethoscope />,
+    title: "Email",
+     description_1:
+      "email@gmail.com",
+    description_2:
+      "Medical Supply District",
+    logo: <MdEmail />,
   },
 ];
 
 const SocialMediaLinks = [
   {
-    title : "X",
-    logo : <RiTwitterXLine/>,
-    link : "https://www.x.com"
-  },{
-    title : "Facebook",
-    logo : <FaFacebook/>,
-    link : "https://www.facebook.com"
-  },{
-    title : "X",
-    logo : <RiTwitterXLine/>,
-    link : "x.com"
+    title: "X",
+    logo: <RiTwitterXLine />,
+    link: "https://www.x.com",
+    color: "text-black"
   },
-]
+  {
+    title: "Facebook",
+    logo: <FaFacebook />,
+    link: "https://www.facebook.com",
+    color: "text-blue-700"
+  },
+  {
+    title: "Youtube",
+    logo: <BsYoutube />,
+    link: "https://youtube.com",
+    color: "text-red-700"
+  },
+];
+
+const FormDefault = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(FormDefault);
 
   const onChange = (e) => {
-    console.log(e.target.name, e.target.value);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -78,7 +93,32 @@ const Contact = () => {
         }),
       });
 
-      console.log("Response : ", response);
+      if (response.ok) {
+        toast.success("Email Sent Successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      } else {
+        toast.error("Error while sending email :(", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+      setFormData(FormDefault);
     } catch (error) {
       console.error("Error while sending email : ", error);
     }
@@ -87,7 +127,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="flex w-full layout-bg flex-col justify-center md:px-20 md:py-20 px-6 py-10 items-center space-y-10"
+      className="flex w-full  layout-bg flex-col justify-center md:px-20 md:py-20 px-6 py-10 items-center space-y-10"
     >
       <div className="w-full text-center">
         <h2 className="text-2xl font-bold">Get In Touch</h2>
@@ -95,8 +135,8 @@ const Contact = () => {
           connet with us with inquires, quotes , and leadlkfj
         </p>
       </div>
-      <div>
-        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} className="">
+      <div className="w-full">
+        <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} className="w-full">
           {Contacts.map((item, index) => {
             return (
               <div
@@ -110,14 +150,15 @@ const Contact = () => {
                 className="flex text-center justify-around flex-col h-60 hover:shadow-lg p-5 space-y-3 transition-all duration-400"
                 key={index}
               >
-                <div className="bg-slate-200 mx-auto text-sky-700 w-10 h-10 flex justify-center rounded-md items-center">
+                <div className={`bg-slate-200 mx-auto ${index % 2 ==0 ? "text-blue-700": "text-green-700"} w-10 h-10 text-2xl flex justify-center rounded-md items-center`}>
                   {item.logo}
                 </div>
                 <div>
                   <h3 className="sub-heading">{item.title}</h3>
                 </div>
                 <div>
-                  <p className="text-secondary">{item.description}</p>
+                  <p className="text-secondary ">{item.description_1}</p>
+                  <p className="text-secondary">{item.description_2}</p>
                 </div>
               </div>
             );
@@ -168,9 +209,10 @@ const Contact = () => {
             <label className="text-sm    font-semibold">Message</label>
             <Textarea
               name="message"
-              placeholder="Your Phone"
+              placeholder="Your Message"
               onChange={onChange}
               className="border border-gray-300 rounded-md   w-full "
+              required
             ></Textarea>
           </div>
 
@@ -178,7 +220,7 @@ const Contact = () => {
             type="submit"
             style={{
               "background-color": "#005085",
-              "width" : "100%"
+              "width": "100%",
             }}
             className="w-full "
           >
@@ -188,31 +230,29 @@ const Contact = () => {
 
         <SimpleGrid cols={1} className="w-full">
           <div className="flex w-full bg-white p-6 rounded-xl border border-slate-200 mb-3  justify-start gap-x-10 items-start flex-row h-40 hover:shadow-lg  space-y-3 transition-all duration-400">
-            <div className="w-10 h-10 rounded-lg bg-sky-300 flex justify-center items-center grow-0">
-              <CiStopwatch className="text-black text-xl" />
+            <div className="w-10 h-10 rounded-lg bg-slate-200 flex justify-center items-center grow-0">
+              <CiStopwatch className="text-sky-800 text-4xl" />
             </div>
             <div>
-              <h3 className="sub-heading">Address</h3>
-              <p className="text-secondary">Kathmandu, Nepal</p>
-              <p className="text-secondary">Street 123, Building 45</p>
-              <p className="text-secondary">Street 123, Building 45</p>
+              <h3 className="sub-heading">Operating Hours</h3>
+              <p className="text-secondary">Monday - Friday: 9:00 AM - 5:00 PM</p>
+              <p className="text-secondary">Saturday: 10:00 AM - 3:00 PM</p>
+              <p className="text-secondary">Sunday: Closed</p>
             </div>
           </div>
           <div className="flex w-full bg-white p-6 rounded-xl border border-slate-200 mb-3  justify-start gap-x-10 items-start flex-col h-40 hover:shadow-lg  space-y-3 transition-all duration-400">
             <h2 className="sub-heading">Follow Us</h2>
             <div className="flex gap-x-7">
-              
-                {SocialMediaLinks.map((item,index) =>{
-                  return(
-                    <div key={index} className="w-10 h-10  rounded-lg bg-slate-200 flex justify-center  items-center grow-0">
-                    <Link href={item.link} >
-                      {item.logo}
-                    </Link>
-                    </div>
-                  )
-                } )}
-              
-             
+              {SocialMediaLinks.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-10 h-10  rounded-lg bg-slate-200 flex justify-center   items-center grow-0"
+                  >
+                    <Link  className={`${item.color}  text-2xl`} href={item.link}>{item.logo}</Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </SimpleGrid>

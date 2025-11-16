@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { MantineProvider } from "@mantine/core";
 import '@mantine/core/styles.css';
+import { Bounce, ToastContainer } from "react-toastify";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,13 +31,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ToastContainer position="top-right" transition={Bounce} draggable autoClose = {2000} theme="dark" />
         <MantineProvider>
           <Header />
-
         {children}
         <Footer />
         
         </MantineProvider>
+     
       </body>
     </html>
   );

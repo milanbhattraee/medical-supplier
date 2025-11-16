@@ -1,17 +1,26 @@
 const apiKey = process.env.BREVO_API_KEY;
 const sender = process.env.BREVO_SENDER;
 const brevoEmail = process.env.BREVO_EMAIL;
+const receiverEmail = process.env.RECIEVER_EMAIL;
+const receiverName = process.env.RECIEVER_NAME;
 
-export async function POST(req, res) {
+
+export async function POST(req) {
   const { senderEmail, senderPhone, senderName, message } = await req.json();
 
   try {
-    if (!senderPhone || !senderName || !senderEmail || !message) {
-      throw new Error("All the input field are required");
+    if (!senderEmail || !senderPhone || !senderName || !message) {
+      return Response.json({
+        status: 400,
+        message: "All fields are required!",
+      });
     }
 
     if (!apiKey || !sender || !brevoEmail) {
-      throw new Error("Creds missing");
+      return Response.json({
+        status: 400,
+        message: "Credentials are missing!",
+      });
     }
 
     const response = await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -27,7 +36,7 @@ export async function POST(req, res) {
           email: brevoEmail,
         },
         to: [
-          { email: "milanbhattarai0007@gmail.com", name: "Milan Bhattarai" },
+          { email: receiverEmail, name: receiverName },
         ],
         subject: `${senderEmail}`,
         htmlContent: `
@@ -41,7 +50,12 @@ export async function POST(req, res) {
       }),
     });
 
-    console.log("Response from email : ", response);
+    if (!response.ok) {
+      return Response.json({
+        status: 400,
+        message: "Error while sending Email :",
+      });
+    }
 
     return Response.json({
       message: "Email sent successfully",

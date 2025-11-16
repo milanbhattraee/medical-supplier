@@ -1,27 +1,28 @@
-import { TiTick } from "react-icons/ti";
+import { GiCheckMark } from "react-icons/gi";
+
 import Image from "next/image";
 
 const AboutItems = [
   {
     title: "Reliability and test",
     discription:
-      "We ensure that all our products meet stringent quality standards and are sou.",
-    bgColor: "bg-green-300",
-    fgColor: "text-green-100",
+      "Trusted by over 500 healthcare facilities nationwide",
+    bgColor: "bg-neutral-200",
+    fgColor: "text-sky-800",
   },
   {
-    title: "Reliability and test",
+    title: "Ethical Practices",
     discription:
-      "We ensure that all our products meet stringent quality standards and are sou.",
-    bgColor: "bg-green-300",
-    fgColor: "text-green-100",
+      "Committed to fair pricing and transparent operations",
+    bgColor: "bg-slate-200",
+    fgColor: "text-red-800",
   },
   {
-    title: "Reliability and test",
+    title: "Healthcare Excellence",
     discription:
-      "We ensure that all our products meet stringent quality standards and are sou.",
-    bgColor: "bg-green-300",
-    fgColor: "text-green-100",
+      "Contributing to better healthcare outcomes across Nepal",
+    bgColor: "bg-neutral-200",
+    fgColor: "text-green-400",
   },
 ];
 
@@ -32,8 +33,8 @@ const About = () => {
         <Image
           className="drop-shadow-2xl rounded-xl"
           src="/medical.jpg"
-          width={700}
-          height={700}
+          width={500}
+          height={500}
           alt="hero image"
         />
       </div>
@@ -47,18 +48,18 @@ const About = () => {
             solutions, expert consultation, and comprehensive support.
           </p>
         </div>
-        <div className="flex flex-col pt-8">
+        <div className="flex flex-col  pt-8">
           {AboutItems.map((item , index) => {
             return (
-              <div key={index} className="flex gap-2 py-2">
+              <div key={index} className="flex items-center h-full  gap-4 py-2">
                 <div
-                  className={`rounded-full ${item.bgColor} flex shrink-0 justify-center items-center w-9 h-9`}
+                  className={`rounded-full ${item.bgColor} ${item.fgColor} flex  shrink-0 justify-center items-center aspect-square h-12`}
                 >
-                  <TiTick size={15} color={item.fgColor} />
+                  <GiCheckMark size={20} />
                 </div>
-                <div className="py-1">
+                <div className="py-4">
                   <h3 className=" sub-heading">{item.title}</h3>
-                  <p className=" text-secondary">{item.discription}</p>
+                  <p className=" text-sm text-secondary">{item.discription}</p>
                 </div>
               </div>
             );
