@@ -5,12 +5,10 @@ import "@mantine/carousel/styles.css";
 import "@mantine/core/styles.css";
 import Image from "next/image";
 import {
-  BiLeftArrow,
   BiLeftArrowAlt,
   BiRightArrowAlt,
-  BiSolidLeftArrowAlt,
 } from "react-icons/bi";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const TestimonialItems = [
   {

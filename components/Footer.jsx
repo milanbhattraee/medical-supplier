@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react'
 const headerItem = [
   { title: "Home", href: "#home" },
   { title: "About", href: "#about" },
