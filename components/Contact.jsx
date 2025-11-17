@@ -132,7 +132,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="flex w-full  layout-bg flex-col justify-center md:px-20 md:py-20 px-6 py-10 items-center space-y-10"
+      className="flex w-full  layout-bg flex-col justify-center md:py-20 px-6 sm:px-8 md:px-10 lg:px-20py-10 items-center space-y-10"
     >
       <div className="w-full text-center">
         <h2 className="text-2xl font-bold">Get In Touch</h2>

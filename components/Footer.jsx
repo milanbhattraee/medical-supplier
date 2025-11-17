@@ -10,7 +10,7 @@ const headerItem = [
 ];
 const Footer = () => {
   return (
-    <section className="w-full flex flex-col  p-20  items-center bg-neutral-950 text-white">
+    <section className="w-full flex flex-col  py-20 px-6 sm:px-8 md:px-10 lg:px-20 items-center bg-neutral-950 text-white">
       <div className='w-full flex flex-col md:flex-row space-y-10 justify-between border-b border-gray-700 pb-10 mb-10'>
         <div className='flex flex-col'>
           <h3 className='sub-heading py-1'>Nepal MedSupply Hub</h3>

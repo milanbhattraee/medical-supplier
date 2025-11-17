@@ -18,7 +18,7 @@ const Products = [{
 
 const Product = () => {
   return (
-    <sections id='service' className="layout-bg w-full md:px-20 items-center px-6 py-20 flex flex-col space-y-10">
+    <sections id='service' className="layout-bg w-full px-6 sm:px-8 md:px-10 lg:px-20 items-center  py-20 flex flex-col space-y-10">
       <div className="space-y-5 text-center">
         <h2 className="heading ">Our Services</h2>
         <p className="text-secondary">

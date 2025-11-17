@@ -28,7 +28,7 @@ const AboutItems = [
 
 const About = () => {
   return (
-    <section id="about" className=" w-full md:px-20 layout-bg flex py-20 md:flex-row md:justify-between flex-col px-6 space-y-6 items-start">
+    <section id="about" className=" w-full px-6 sm:px-8 md:px-10 lg:px-20 layout-bg flex py-20 md:flex-row md:justify-between flex-col space-y-6 items-start">
       <div className="w-auto md:pr-5 md:w-6/12">
         <Image
           className="drop-shadow-2xl rounded-xl"
