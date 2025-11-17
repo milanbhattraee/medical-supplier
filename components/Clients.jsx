@@ -60,16 +60,7 @@ const Clients = () => {
         })}
       </SimpleGrid>
 
-      <div className="bg-slate-100 rounded-xl border border-sky-200 text-center px-20 py-10">
-        <p className="italic mb-6 sub-heading">
-          "Nepal MedSupply Hub has been instrumental in helping us provide
-          quality healthcare services across remote regions. Their reliability
-          and commitment to excellence are unmatched."
-        </p>
-        <p className="text-secondary">
-          — Healthcare Director, Nepal Government Facility
-        </p>
-      </div>
+     
     </sections>
   );
 };

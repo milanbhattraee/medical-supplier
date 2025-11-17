@@ -200,6 +200,7 @@ const Contact = () => {
               onChange={onChange}
               value={formData.email}
               className="border border-gray-300 rounded-md   w-full "
+              required
             />
           </div>
           <div className="w-full">
@@ -211,6 +212,7 @@ const Contact = () => {
               onChange={onChange}
               value={formData.phone}
               className="border border-gray-300 rounded-md   w-full "
+              required
             />
           </div>
           <div className="w-full">

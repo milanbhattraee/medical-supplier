@@ -27,6 +27,7 @@ const Header = () => {
       } md:h-10 md:px-20 px-5 lg:px-10  md:py-10 flex md:flex-row flex-col md:justify-around justify-start md:items-center items-start  layout text-black shadow-md border-b border-gray-300`}
     >
       <div className="flex gap-x-3 justify-center items-center">
+        <Link href={"/"}>
         <Image
           className="drop-shadow-xl w-full h-20 "
           src="/danfeLogo.png"
@@ -34,6 +35,7 @@ const Header = () => {
           height={200}
           alt="logo"
         />
+        </Link>
       </div>
       <div >
         <ul className=" hidden font-semibold md:flex space-x-4 lg:space-x-6">

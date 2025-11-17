@@ -1,5 +1,6 @@
 import { Button } from "@mantine/core";
 import Image from "next/image";
+import Link from "next/link";
 import { IoMdArrowForward } from "react-icons/io";
 
 const HeroItems = [
@@ -26,15 +27,18 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row sm:gap-4 w-full space-y-3">
+          <Link className="flex  justify-center items-center " href = "#product">
           <Button
-            href = "#product"
+            
             style={{
               "background-color": "#005085",
+              "width" : "100%",
             }}
           >
             Explore Products
             <IoMdArrowForward className="ml-2 mt-1" />
           </Button>
+            </Link>
           <Button
             style={{
               "background-color": "white",

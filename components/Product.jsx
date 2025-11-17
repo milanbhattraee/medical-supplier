@@ -1,8 +1,27 @@
 import { FaStethoscope } from "react-icons/fa";
 import { Button } from "@mantine/core";
 import { SimpleGrid } from "@mantine/core";
+import { useState } from "react";
 
 const Products = [
+  {
+    title: "Surgical Instruments",
+    description:
+      "High-quality surgical instruments including scalpels, forceps, scissors, and clamps for various medical procedures.",
+    logo: <FaStethoscope />,
+  },
+  {
+    title: "Diagnostic Equipment",
+    description:
+      "Advanced diagnostic tools such as stethoscopes, blood pressure monitors, and otoscopes to aid in accurate patient assessments.",
+    logo: <FaStethoscope />,
+  },
+  {
+    title: "Medical Consumables",
+    description:
+      "A wide range of disposable medical supplies including gloves, syringes, bandages, and masks to ensure hygiene and safety.",
+    logo: <FaStethoscope />,
+  },
   {
     title: "Surgical Instruments",
     description:
@@ -24,8 +43,15 @@ const Products = [
 ];
 
 const Product = () => {
+  const [show , setShow] = useState(false)
+
+  const visibleProducts = show ? Products : Products.slice(0, 3);
+  
   return (
-    <sections id ='product' className=" w-full md:px-20 items-center px-6 py-20 flex flex-col space-y-10">
+    <sections
+      id="product"
+      className=" w-full md:px-20 items-center px-6 py-20 flex flex-col space-y-10"
+    >
       <div className="space-y-5 text-center">
         <h2 className="heading ">Our Product Catelogue</h2>
         <p className="text-secondary">
@@ -34,7 +60,7 @@ const Product = () => {
         </p>
       </div>
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }}>
-        {Products.map((item, index) => {
+        {visibleProducts.map((item, index) => {
           return (
             <div
               style={{
@@ -47,7 +73,11 @@ const Product = () => {
               className="flex justify-around flex-col h-60 hover:shadow-lg p-5 space-y-3 transition-all duration-400"
               key={index}
             >
-              <div className={`bg-slate-200 ${index % 2 ==0 ? "text-blue-700": "text-green-700"} w-10 h-10 flex justify-center rounded-md items-center`}>
+              <div
+                className={`bg-slate-200 ${
+                  index % 2 == 0 ? "text-blue-700" : "text-green-700"
+                } w-10 h-10 flex justify-center rounded-md items-center`}
+              >
                 {item.logo}
               </div>
               <div>
@@ -62,11 +92,13 @@ const Product = () => {
       </SimpleGrid>
       <div>
         <Button
+          onClick={() => (setShow(!show))}
           style={{
             "background-color": "#005085",
           }}
         >
-          View Full Product List
+          
+      {!show ? "View More Products": "Show less"}
         </Button>
       </div>
     </sections>
